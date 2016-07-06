@@ -7,10 +7,17 @@ class StudentsController < ApplicationController
 
   def show
   end
+  
+  def active
+    @student = Student.find(params[:id])
+    @student.active = !@student.active
+    @student.save
+    redirect_to "/students/#{@student.id}"
+  end
 
   private
 
-    def set_student
-      @student = Student.find(params[:id])
-    end
+  def set_student
+    @student = Student.find(params[:id])
+  end
 end
